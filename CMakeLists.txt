@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(pybind11_project CXX)
 # https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD.html
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -23,13 +23,15 @@ endif()
 
 find_package(Python COMPONENTS Interpreter Development)
 find_package(pybind11 CONFIG)
-
+find_package(opencv CONFIG)
 
 # Python method:
 pybind11_add_module(example src/example.cpp)
 
 # Don't add a 'lib' prefix to the shared library
 set_target_properties(example PROPERTIES PREFIX "")
+
+target_link_libraries(example PRIVATE opencv::opencv)
 
 if (WIN32)
   if (MSVC)

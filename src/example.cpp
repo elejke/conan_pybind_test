@@ -1,4 +1,6 @@
 #include <pybind11/pybind11.h>
+#include <opencv2/opencv.hpp>
+
 #include <cmath>
 #include <string>
 #include <iostream>
@@ -15,10 +17,15 @@ int n_length(int n)
     return str.length();
 }
 
-double binom(int n, int k) { return 1 / ((n + 1) * std::beta(n - k + 1, k + 1)); }
+double binom(int n, int k) { return 1 / ((n + 1) * (n - k + 1)); }
 
 void pascal(int m)
 {
+
+    cv::Mat image; // #102, 201, cv::CV_8UC1);
+
+    std :: cout << image.rows << " " << image.cols << "LOOOOOOOL" << std :: endl;
+
     if(m > 16){
         std::cout<<"aus optischen Gruenden, bitte eine Zahl < 16 waehlen."<<std::endl;
         return;
