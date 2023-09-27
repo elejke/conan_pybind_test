@@ -2,6 +2,8 @@
 
 for making things running on Mac OS:
 ```ruby
+pip install conan==1.59.0
+
 mkdir build
 cd build
 conan install .. --output-folder cmake-build --build=missing -r conancenter
